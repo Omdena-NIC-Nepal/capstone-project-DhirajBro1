@@ -3,11 +3,8 @@ import streamlit as st
 import geopandas as gpd
 
 @st.cache_data
-# def load_weather_events():
-#     return pd.read_csv('data/processed_data/processed_extreme_weather_events.csv')
-def load_temperature_data():
-    file_path = Path(__file__).parent.parent / "data" / "processed_data" / "dailyclimate.csv"
-    return pd.read_csv(file_path)
+def load_weather_events():
+    return pd.read_csv('data/processed_data/processed_extreme_weather_events.csv')
 
 @st.cache_data
 def load_temperature_data():
