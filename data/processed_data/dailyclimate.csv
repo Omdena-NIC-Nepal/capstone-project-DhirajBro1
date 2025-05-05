@@ -1,4 +1,4 @@
-Date,District,Latitude,Longitude,Precip,Pressure,Humidity_2m,Rh_2m,Temp_2m,Wetbulbtemp_2m,maxtemp_2m,mintemp_2m,temprange_2m,earthskintemp,windspeed_10m,maxwindspeed_10m,minwindspeed_10m,windspeedrange_10m,windspeed_50m,maxwindspeed_50m,minwindspeed_50m,windspeedrange_50m,Year,Month,Day,Season
+Date,District,Latitude,Longitude,Precip,Pressure,Humidity_2m,Rh_2m,Temp_2m,Wetbulbtemp_2m,Maxtemp_2m,Mintemp_2m,Temprange_2m,Earthskintemp,Windspeed_10m,Maxwindspeed_10m,Minwindspeed_10m,Windspeedrange_10m,Windspeed_50m,Maxwindspeed_50m,Minwindspeed_50m,Windspeedrange_50m,Year,Month,Day,Season
 1993-12-04,Arghakhanchi,27.9,83.2,0.0,93.66,3.14,25.49,16.29,-3.54,24.43,10.37,14.07,13.07,1.99,3.31,0.57,2.74,2.58,4.06,0.77,3.28,1993,12,4,Winter
 1995-05-02,Arghakhanchi,27.9,83.2,0.0,92.82,4.63,14.9,31.49,1.54,40.26,22.8,17.45,32.29,5.51,9.47,2.59,6.88,7.7,11.1,4.01,7.09,1995,5,2,Spring
 1986-09-17,Arghakhanchi,27.9,83.2,0.03,93.13,12.93,59.2,25.4,16.7,31.99,20.26,11.73,25.5,2.19,3.79,0.14,3.64,3.04,4.28,0.36,3.92,1986,9,17,Autumn
