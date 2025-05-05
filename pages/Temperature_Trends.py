@@ -1,6 +1,8 @@
 import streamlit as st
-from utils.data_loader import load_weather_events,load_temperature_data
-from utils.plots import plot_temperature_trends, plot_precipitation_trends, plot_monthly_avg
+#from utils.data_loader import load_weather_events,load_temperature_data
+import utils.data_loader as dl
+#from utils.plots import plot_temperature_trends, plot_precipitation_trends, plot_monthly_avg
+import utils.plots as p
 
 # Set page config
 st.set_page_config(page_title="Temperature & Rainfall Trends", layout="wide")
@@ -9,7 +11,7 @@ st.set_page_config(page_title="Temperature & Rainfall Trends", layout="wide")
 st.title(" Temperature & Rainfall Trends in Nepal")
 
 # Load data
-df = load_temperature_data()
+df = dl.load_temperature_data()
 
 # Sidebar Filters
 st.sidebar.header("Filter Options")
@@ -29,9 +31,9 @@ filtered_df = df[
 
 # Plotting
 st.subheader(" Average Temperature Over Time")
-fig1 = plot_temperature_trends(filtered_df, selected_districts)
+fig1 = p.plot_temperature_trends(filtered_df, selected_districts)
 st.pyplot(fig1)
 
 st.subheader(" Precipitation Over Time")
-fig2 = plot_precipitation_trends(filtered_df, selected_districts)
+fig2 = p.plot_precipitation_trends(filtered_df, selected_districts)
 st.pyplot(fig2)
