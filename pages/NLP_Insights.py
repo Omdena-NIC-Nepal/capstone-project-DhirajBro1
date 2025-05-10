@@ -1,9 +1,11 @@
 import streamlit as st
 import pandas as pd
+import nltk
+nltk.download('punkt')
 from utils.data_loader import NLP_analysis
 from utils.processor import clean_topics,summarize_text
 
-def main():
+
     st.set_page_config(page_title="Climate Articles Analyzer", layout="wide")
     st.title("🌎 Climate Articles Analyzer (From Precomputed Results)")
 
@@ -50,5 +52,3 @@ def main():
         for topic_name, keywords in cleaned_topics:
             st.markdown(f"**{topic_name}** → {', '.join([f'`{kw}`' for kw in keywords])}")
 
-if __name__ == "__main__":
-    main()
