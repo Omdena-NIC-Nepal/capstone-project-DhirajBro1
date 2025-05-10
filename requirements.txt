@@ -11,6 +11,7 @@ nltk
 seaborn
 folium
 streamlit-folium
-gensim
+gensim==3.8.3
+scipy
 spacy
 spacy-transformers
