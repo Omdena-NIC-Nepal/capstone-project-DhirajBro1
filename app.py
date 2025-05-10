@@ -13,9 +13,9 @@ Welcome to the Nepal Climate Change Impact Dashboard!
 Here you can explore various analyses on:
 - Extreme Weather Events
 - Temperature and Rainfall Trends
-- Glacial Lake Monitoring
-- Flood Risk Mapping
-- Population Vulnerability
+- NLP Analysis 
+- Model Training 
+- Climate Vulnerability 
 
 👉 Use the sidebar to navigate different pages!
 """)
