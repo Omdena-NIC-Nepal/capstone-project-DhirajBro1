@@ -3,8 +3,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-import streamlit as st
-
 # Set page config
 st.set_page_config(page_title="Nepal Climate Change Dashboard", page_icon="🌏", layout="wide")
 
