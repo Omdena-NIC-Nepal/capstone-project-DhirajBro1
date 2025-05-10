@@ -13,13 +13,13 @@ def main():
 
     # Summary settings
     st.sidebar.subheader("⚙️ Summary Settings")
-    summary_ratio = st.sidebar.slider("Summary length", min_value=5, max_value=50, value=15, step=5) / 100
+    num_sentences = st.sidebar.slider("Summary sentences", min_value=3, max_value=15, value=5, step=1)
 
     st.subheader(f"📰 {selected_article}")
 
     # Show summarized text
     st.subheader("📄 Article Summary")
-    summary = summarize_text(article_row['article'], ratio=summary_ratio)
+    summary = summarize_text(article_row['article'], num_sentences=num_sentences)
     st.write(summary)
 
     # Option to read full article

@@ -1,7 +1,9 @@
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 import re
-from gensim.summarization import summarize
+from sumy.parsers.plaintext import PlaintextParser
+from sumy.nlp.tokenizers import Tokenizer
+from sumy.summarizers.lex_rank import LexRankSummarizer
 def preprocess_climate_data(path_to_csv):
     df = pd.read_csv(path_to_csv)
 
@@ -52,11 +54,9 @@ def clean_topics(topic_string):
                 keywords_list = re.findall(r'"(.*?)"', keywords)
                 cleaned.append((topic_name, keywords_list))
     return cleaned
-def summarize_text(text, ratio=0.1):
-    try:
-        summary = summarize(text, ratio=ratio)
-        if not summary.strip():
-            return "⚠️ Summary not available (text too short or too simple)."
-        return summary
-    except ValueError:
-        return "⚠️ Summary not available (text too short or too simple)."
+def summarize_text(text, num_sentences=3):
+    parser = PlaintextParser.from_string(text, Tokenizer("english"))
+    summarizer = LexRankSummarizer()
+    summary = summarizer(parser.document, num_sentences)
+    summarized_text = " ".join([str(sentence) for sentence in summary])
+    return summarized_text
