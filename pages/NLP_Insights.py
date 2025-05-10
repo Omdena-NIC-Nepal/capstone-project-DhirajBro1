@@ -1,13 +1,7 @@
 import streamlit as st
 import pandas as pd
 import nltk
-
-# Safe punkt downloader
-try:
-    nltk.data.find('tokenizers/punkt')
-except LookupError:
-    nltk.download('punkt')
-
+nltk.download('punkt')
 from utils.data_loader import NLP_analysis
 from utils.processor import clean_topics, summarize_text
 
