@@ -11,3 +11,6 @@ nltk
 seaborn
 folium
 streamlit-folium
+gensim
+spacy
+spacy-transformers

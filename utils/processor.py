@@ -1,6 +1,7 @@
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
-
+import re
+from gensim.summarization import summarize
 def preprocess_climate_data(path_to_csv):
     df = pd.read_csv(path_to_csv)
 
@@ -35,3 +36,27 @@ def preprocess_climate_data(path_to_csv):
     )
 
     return grouped
+def clean_topics(topic_string):
+    # Split by Topic
+    topics = topic_string.split(';')
+    cleaned = []
+    for topic in topics:
+        topic = topic.strip()
+        if topic:
+            # Extract "Topic X" and keywords
+            match = re.match(r"(Topic \d+): (.+)", topic)
+            if match:
+                topic_name = match.group(1)
+                keywords = match.group(2)
+                # Extract only words, drop weights and quotes
+                keywords_list = re.findall(r'"(.*?)"', keywords)
+                cleaned.append((topic_name, keywords_list))
+    return cleaned
+def summarize_text(text, ratio=0.1):
+    try:
+        summary = summarize(text, ratio=ratio)
+        if not summary.strip():
+            return "⚠️ Summary not available (text too short or too simple)."
+        return summary
+    except ValueError:
+        return "⚠️ Summary not available (text too short or too simple)."

@@ -26,5 +26,8 @@ def load_population_data():
 def load_flood_geojson():
     return gpd.read_file('data/processed_data/flood_data.geojson')
 
+@st.cache_data
+def NLP_analysis():
+    return pd.read_csv('articles/article_analysis.csv')
 
 
