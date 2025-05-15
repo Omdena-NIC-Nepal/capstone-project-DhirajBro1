@@ -4,6 +4,15 @@ import re
 from sumy.parsers.plaintext import PlaintextParser
 from sumy.nlp.tokenizers import Tokenizer
 from sumy.summarizers.lex_rank import LexRankSummarizer
+import nltk
+import spacy
+from gensim import corpora, models
+from nltk.tokenize import word_tokenize
+
+
+# Load spaCy model once
+nlp = spacy.load("en_core_web_sm")
+
 def preprocess_climate_data(path_to_csv):
     df = pd.read_csv(path_to_csv)
 
@@ -60,3 +69,10 @@ def summarize_text(text, num_sentences=3):
     summary = summarizer(parser.document, num_sentences)
     summarized_text = " ".join([str(sentence) for sentence in summary])
     return summarized_text
+
+# Clean and tokenize function for topic modeling
+def preprocess_for_lda(text):
+    text = re.sub(r'\W+', ' ', text.lower())  # remove punctuation and lowercase
+    tokens = word_tokenize(text)
+    stopwords = nltk.corpus.stopwords.words("english")
+    return [token for token in tokens if token not in stopwords and len(token) > 2]

@@ -31,8 +31,8 @@ X = df[features]
 y = df[target]
 
 # Sidebar model selection
-st.sidebar.header("📌 Select Regression Model")
-model_choice = st.sidebar.selectbox("", [
+st.header("📌 Select Regression Model")
+model_choice = st.selectbox("", [
     "Multiple Linear Regression",
     "Ridge Regression",
     "Lasso Regression",
@@ -40,7 +40,7 @@ model_choice = st.sidebar.selectbox("", [
 ])
 
 # Sidebar cross-validation option
-run_cv = st.sidebar.checkbox("Run cross-validation (5-fold)", value=False)
+run_cv = st.checkbox("Run cross-validation (5-fold)", value=False)
 
 # Train-test split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
@@ -48,7 +48,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 model = None
 y_pred = None
 
-if st.sidebar.button("🚀 Train Model"):
+if st.button("🚀 Train and predict model"):
     with st.spinner("Training model..."):
         if model_choice == "Multiple Linear Regression":
             model = multiple_linear_regression(X_train, y_train)
