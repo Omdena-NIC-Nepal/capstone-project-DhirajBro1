@@ -6,7 +6,7 @@ import spacy
 nltk.download('punkt')
 nltk.download('punkt_tab')
 nlp = spacy.load("en_core_web_sm")
-from gensim import corpora, models
+from gensim import corpora, modelsx
 from utils.data_loader import NLP_analysis
 from utils.processor import clean_topics, summarize_text, preprocess_for_lda
 from textblob import TextBlob  # Assuming you're using TextBlob for sentiment
