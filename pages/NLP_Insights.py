@@ -30,7 +30,7 @@ st.write(summary)
 # Option to read full article
 
 with st.expander("🔍 Read full article"):
-st.write(article_row['article'])
+ st.write(article_row['article'])
 
 # Sentiment analysis
 
