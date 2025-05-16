@@ -30,7 +30,7 @@ st.write(summary)
 # Option to read full article
 
 with st.expander("🔍 Read full article"):
-st.write(article_row['article'])
+    st.write(article_text)
 
 # Sentiment analysis
 
@@ -43,18 +43,45 @@ col3.metric("Subjectivity", f"{article_row['subjectivity']:.2f}")
 # Named entities
 
 st.subheader("🏷️ Named Entities")
-if article_row['named_entities']:
-with st.expander("Show named entities"):
-entities = article_row['named_entities'].split(', ')
-for entity in entities:
-st.write(f"- {entity}")
+if input_mode == "Preloaded Article":
+    if article_row['named_entities']:
+        with st.expander("Show named entities"):
+            entities = article_row['named_entities'].split(', ')
+            for entity in entities:
+                st.write(f"- {entity}")
+    else:
+        st.write("No named entities detected.")
 else:
-st.write("No named entities detected.")
+    with st.spinner("Extracting named entities..."):
+        doc = nlp(article_text)
+        entities = list(set(ent.text for ent in doc.ents if ent.label_ in ["PERSON", "ORG", "GPE", "LOC", "EVENT"]))
+        if entities:
+            with st.expander("Show named entities"):
+                for entity in entities:
+                    st.write(f"- {entity}")
+        else:
+            st.write("No named entities detected.")
 
-# Topics
+# -------- Topics --------
+st.subheader("📌 Topics")
+if input_mode == "Preloaded Article":
+    with st.expander("Show topics summary"):
+        cleaned_topics = clean_topics(article_row['topics'])
+        for topic_name, keywords in cleaned_topics:
+            st.markdown(f"**{topic_name}** → {', '.join([f'`{kw}`' for kw in keywords])}")
+else:
+    with st.spinner("Extracting topics..."):
+        try:
+            tokens = preprocess_for_lda(article_text)
+            if tokens:
+                dictionary = corpora.Dictionary([tokens])
+                corpus = [dictionary.doc2bow(tokens)]
+                lda_model = models.LdaModel(corpus, num_topics=3, id2word=dictionary, passes=5)
+                with st.expander("Show topics summary"):
+                    for idx, topic in lda_model.print_topics():
+                        st.markdown(f"**Topic {idx+1}** → {topic}")
+            else:
+                st.write("Not enough valid words to generate topics.")
+        except Exception as e:
+            st.error(f"Error in topic modeling: {e}")
 
-st.subheader("📌 Topics (Global Across All Articles)")
-with st.expander("Show topics summary"):
-cleaned_topics = clean_topics(article_row['topics'])
-for topic_name, keywords in cleaned_topics:
-st.markdown(f"**{topic_name}** → {', '.join([f'`{kw}`' for kw in keywords])}")
