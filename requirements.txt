@@ -16,3 +16,4 @@ scipy
 spacy
 spacy-transformers
 sumy
+langdetect
