@@ -7,6 +7,8 @@ nltk.download('punkt')
 nltk.download('punkt_tab')
 nltk.download('stopwords')
 from nltk.corpus import stopwords
+import spacy.cli
+spacy.cli.download("en_core_web_sm")
 nlp = spacy.load("en_core_web_sm")
 from gensim import corpora, models
 from nltk.tokenize import word_tokenize
