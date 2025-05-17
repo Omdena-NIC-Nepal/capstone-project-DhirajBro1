@@ -19,7 +19,7 @@ from textblob import TextBlob
 from langdetect import detect, DetectorFactory
 DetectorFactory.seed = 0  
 
-st.set_page_config(page_title="Climate Articles Analyzer", layout="wide")
+st.set_page_config(page_title="Natural Language Processing", layout="wide")
 st.title("🌎 Climate Articles Analyzer")
 
 # Add input type selector
@@ -92,7 +92,7 @@ else:
         try:
             lang_code = detect(article_text)
             language_names = {
-                'en': 'English', 'ne': 'Nepali', 'fr': 'French',
+                'en': 'English', 'ne': 'Nepali', 'hi':'Nepali', 'fr': 'French',
                 'es': 'Spanish', 'de': 'German', 'zh-cn': 'Chinese', 'ja': 'Japanese'
             }
             lang_display = language_names.get(lang_code, f"Unknown ({lang_code})")
