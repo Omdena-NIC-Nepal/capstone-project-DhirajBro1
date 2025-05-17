@@ -55,6 +55,7 @@ if input_mode == "Preloaded Article":
     col3.metric("Subjectivity", f"{blob.sentiment.subjectivity:.2f}")
 elif input_mode == "Live Text Input":
     article_text = st.text_area("✍️ Paste your article text here", height=300)
+    st.button("Analyse")
     if not article_text.strip():
         st.warning("Please paste your text above to see analysis.")
         st.stop()
@@ -84,7 +85,7 @@ elif input_mode == "Live Text Input":
 else:
     st.subheader("🌐 Language Predicton")
     article_text = st.text_area("✍️ Enter text in any language", height=300)
-
+    st.button("Predict Language")
     if article_text.strip():
         try:
             lang_code = detect(article_text)
