@@ -23,7 +23,7 @@ Here you can explore various analyses on:
     - Explore district-level climate vulnerability based on various environmental and socio-economic indicators.
 
 👉 Use the sidebar to navigate different pages!
-""")
+""") 
 
 col1, col2, col3 = st.columns(3)
 
